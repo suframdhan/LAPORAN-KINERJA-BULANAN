@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JURNAL PEMBELAJARAN</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body, html { width: 100%; height: 100%; overflow: hidden; background-color: #F8FAFC; font-family: 'Plus Jakarta Sans', sans-serif; }
+        
+        #loading-screen {
+            position: fixed;
+            inset: 0;
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            transition: opacity 0.4s ease;
+        }
+        .spinner {
+            width: 48px;
+            height: 48px;
+            border: 4px solid #E2E8F0;
+            border-top: 4px solid #0d9488;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-bottom: 16px;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Animasi loading awal -->
+    <div id="loading-screen">
+        <div class="spinner"></div>
+        <h3 style="color: #0f172a; font-weight: 800; font-size: 15px; text-transform: uppercase; letter-spacing: 0.05em;">LKB</h3>
+        <p style="color: #64748b; font-size: 11px; margin-top: 4px; font-weight: 600;">LAPORAN KINERJA BULANAN</p>
+    </div>
+
+    <!-- Iframe dengan URL Web App Google Apps Script terbaru Anda -->
+    <iframe id="app-frame" src="https://script.google.com/macros/s/AKfycbww66jdCGRRaWJq6HYN6E72p6Jp3EIIGWRzbD1F14K4Qi7uw_MxI7miOUg05TZ_CqqyvQ/exec" 
+            onload="document.getElementById('loading-screen').style.opacity='0'; setTimeout(()=>document.getElementById('loading-screen').style.display='none', 400);"
+            allow="fullscreen; camera; microphone; clipboard-read; clipboard-write">
+    </iframe>
+
+    <script>
+        // Penanganan pengaman jika iframe mendeteksi blokir bingkai dari Google
+        const iframe = document.getElementById('app-frame');
+        iframe.onerror = function() {
+            console.warn("Gagal memuat iframe langsung, mengalihkan ke mode langsung...");
+            window.location.href = iframe.src;
+        };
+    </script>
+
+</body>
+</html>
