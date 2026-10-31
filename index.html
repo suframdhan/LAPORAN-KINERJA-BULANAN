@@ -6,7 +6,7 @@
     <title>WIDYA - Wadah Informasi Dokumentasi Kinerja Harian</title>
     
     <!-- Google Fonts & FontAwesome -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Konfigurasi PWA Opsional -->
@@ -18,119 +18,172 @@
             width: 100%; 
             height: 100%; 
             overflow: hidden; 
-            background-color: #F8FAFC; 
-            font-family: 'Montserrat', sans-serif; 
+            background-color: #f8fafc; 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
         }
         
-        /* Layar pemuatan awal yang elegan */
+        /* Latar Belakang Animasi Modern */
         #loading-screen {
             position: fixed;
             inset: 0;
-            background: linear-gradient(135deg, #F8FAFC 0%, #E6F6F5 100%);
+            background: #e0f2fe; /* Warna dasar biru muda */
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
             z-index: 999;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
-        }
-
-        .loading-card {
-            background: white;
-            padding: 40px 32px;
-            border-radius: 24px;
-            box-shadow: 0 15px 35px rgba(0, 163, 158, 0.08);
-            border: 1px solid rgba(0, 163, 158, 0.15);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            max-width: 360px;
-            width: 90%;
-            text-align: center;
-            position: relative;
+            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s;
             overflow: hidden;
         }
 
+        /* Ornamen Motif Konsisten dengan WIDYA */
+        .motif-overlay {
+            position: absolute;
+            inset: 0;
+            opacity: 0.04;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAzNGwyNCAyNHYyaC0ydk0wIDM0bDI0IDI0djJoLTJ2TTAgMmgydjJMMjYgMjZWMjRIMjRMMCAwdiJzdHJva2U9IiMwZjk0ODgiIHN0cm9rZS13aWR0aD0iMSIvPjwvZz48L3N2Zz4=');
+            z-index: 1;
+        }
+
+        /* Animasi Gelembung (Blob) */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.6;
+            z-index: 0;
+            animation: float 8s infinite alternate ease-in-out;
+        }
+        .blob-1 {
+            width: 400px; height: 400px;
+            background: #5eead4; /* Teal cerah */
+            top: -100px; left: -100px;
+        }
+        .blob-2 {
+            width: 500px; height: 500px;
+            background: #bae6fd; /* Biru cerah */
+            bottom: -150px; right: -100px;
+            animation-delay: -4s;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(30px, 50px) scale(1.1); }
+        }
+
+        /* Kartu Glassmorphism */
+        .loading-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 25px 50px -12px rgba(13, 148, 136, 0.15);
+            padding: 45px 35px;
+            border-radius: 28px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 380px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+            animation: cardEntrance 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes cardEntrance {
+            0% { opacity: 0; transform: translateY(30px) scale(0.95); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* Animasi Logo Melayang */
         .logo-container {
-            width: 72px;
-            height: 72px;
-            background: #E6F6F5;
-            border-radius: 20px;
+            width: 85px;
+            height: 85px;
+            background: #ffffff;
+            border-radius: 24px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 20px;
-            border: 1px solid rgba(0, 163, 158, 0.2);
-            box-shadow: 0 4px 12px rgba(0, 163, 158, 0.1);
+            margin-bottom: 25px;
+            box-shadow: 0 10px 25px rgba(13, 148, 136, 0.15);
+            border: 2px solid rgba(13, 148, 136, 0.1);
+            animation: hoverEffect 3s ease-in-out infinite;
+        }
+
+        @keyframes hoverEffect {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
         }
 
         .logo-container img {
-            width: 48px;
-            height: 48px;
+            width: 55px;
+            height: 55px;
             object-fit: contain;
         }
 
-        .spinner-wrapper {
-            position: relative;
-            width: 50px;
-            height: 50px;
-            margin-bottom: 20px;
-        }
-
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 4px solid #E2E8F0;
-            border-top: 4px solid #00A39D;
-            border-radius: 50%;
-            animation: spin 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
-        }
-
-        @keyframes spin { 
-            0% { transform: rotate(0deg); } 
-            100% { transform: rotate(360deg); } 
-        }
-
+        /* Teks Modern */
         h3 {
-            color: #1E293B;
+            color: #0f172a;
             font-weight: 900;
-            font-size: 16px;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            margin-bottom: 6px;
+            font-size: 22px;
+            letter-spacing: 0.1em;
+            margin-bottom: 8px;
         }
 
         .desc {
-            color: #64748B;
-            font-size: 11px;
+            color: #475569;
+            font-size: 12px;
             font-weight: 600;
-            line-height: 1.4;
+            line-height: 1.5;
+            margin-bottom: 25px;
         }
 
-        /* Bar progres halus di bawah kartu */
+        .badge {
+            display: inline-flex;
+            items-center: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: rgba(13, 148, 136, 0.1);
+            color: #0d9488;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        /* Garis Loading Menyala */
         .progress-bar-container {
-            position: absolute;
-            bottom: 0;
-            left: 0;
             width: 100%;
-            height: 4px;
-            background: #E2E8F0;
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
         }
 
         .progress-bar {
             width: 0%;
             height: 100%;
-            background: linear-gradient(90deg, #00A39D, #F5A623);
-            animation: progressPulse 2s ease-in-out infinite;
+            background: linear-gradient(90deg, #0d9488, #2dd4bf, #0d9488);
+            background-size: 200% 100%;
+            border-radius: 10px;
+            animation: loadProgress 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite, shimmer 2s linear infinite;
         }
 
-        @keyframes progressPulse {
-            0% { width: 10%; }
-            50% { width: 75%; }
-            100% { width: 95%; }
+        @keyframes loadProgress {
+            0% { width: 0%; transform: translateX(-100%); }
+            50% { width: 70%; transform: translateX(20%); }
+            100% { width: 100%; transform: translateX(100%); }
         }
         
-        /* Bingkai aplikasi utama yang memenuhi layar */
+        @keyframes shimmer {
+            0% { background-position: 100% 0; }
+            100% { background-position: -100% 0; }
+        }
+        
         iframe {
             width: 100%;
             height: 100%;
@@ -141,19 +194,22 @@
 </head>
 <body>
 
-    <!-- Animasi loading estetik saat pertama kali dibuka -->
+    <!-- Animasi Loading Modern -->
     <div id="loading-screen">
+        <!-- Dekorasi Latar Belakang -->
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="motif-overlay"></div>
+
         <div class="loading-card">
+            <div class="badge"><i class="fa-solid fa-shield-halved"></i> Menghubungkan</div>
+            
             <div class="logo-container">
                 <img src="https://i.ibb.co.com/rRhwRkHS/WIDYA.png" alt="Logo WIDYA">
             </div>
-            
-            <div class="spinner-wrapper">
-                <div class="spinner"></div>
-            </div>
 
             <h3>WIDYA</h3>
-            <p class="desc">Wadah Informasi Dokumentasi Kinerja Harian</p>
+            <p class="desc">Wadah Informasi Dokumentasi<br>Kinerja Harian Guru</p>
 
             <div class="progress-bar-container">
                 <div class="progress-bar"></div>
@@ -161,14 +217,13 @@
         </div>
     </div>
 
-    <!-- Iframe dengan URL Web App Google Apps Script Anda -->
+    <!-- Iframe dengan URL Web App Google Apps Script -->
     <iframe id="app-frame" src="https://script.google.com/macros/s/AKfycbzOUeLaYxVHomab5QVRT7MK0-CmHONJpIcAU83UXWKKJ2OvK7UI8TJYtmL_K1Qk6OwgKg/exec" 
-            onload="const screen = document.getElementById('loading-screen'); screen.style.opacity='0'; setTimeout(()=>screen.style.visibility='hidden', 500);"
+            onload="const screen = document.getElementById('loading-screen'); screen.style.opacity='0'; setTimeout(()=>screen.style.visibility='hidden', 600);"
             allow="fullscreen; camera; microphone; clipboard-read; clipboard-write">
     </iframe>
 
     <script>
-        // Penanganan pengaman jika iframe mendeteksi blokir bingkai dari Google
         const iframe = document.getElementById('app-frame');
         iframe.onerror = function() {
             console.warn("Gagal memuat iframe langsung, mengalihkan ke mode langsung...");
